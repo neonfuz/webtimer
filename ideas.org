@@ -1,0 +1,3 @@
+ - togglable "on press" "on release" start, split, etc
+ - backup strat splits
+

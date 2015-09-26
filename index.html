@@ -1,4 +1,35 @@
+<meta charset="UTF-8"> 
+
 <html>
-  <head><title>Timer</title></head>
-  <body><h1>Timer</h1></body>
+  <head>
+	<title>Timer</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body onKeyUp="keyupevent(event)">
+	<p><h1>Timer</h1></p>
+
+	<h2><p id="timer">
+	  press space to start
+	</p></h2>
+
+	<p id="instructions">
+	  <h2>Key mappings:</h2>
+	  <table>
+		<tr>
+		  <td id="key">c:</td>
+		  <td>continue stopped timer</td>
+		</tr>
+		<tr>
+		  <td id="key">r:</td>
+		  <td>restart time</td>
+		</tr>
+		<tr>
+		  <td id="key">space:</td>
+		  <td>start/stop timer, restarting time</td>
+		</tr>
+	  </table>
+	</p>
+
+	<script src="script.js"></script>
+  </body>
 </html>

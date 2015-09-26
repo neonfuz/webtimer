@@ -1,0 +1,15 @@
+body {
+	color: white;
+	background-color: black;
+	font-family: sans-serif;
+}
+
+#timer {
+	color: red;
+	font-size: 100;
+}
+
+#key {
+	text-align: right;
+	font-style: bold;
+}

@@ -23,8 +23,10 @@ Timer.prototype.getString = function() {
 	timeString += formatDigits(time.getUTCHours());
 	timeString += ":" + formatDigits(time.getUTCMinutes());
 	timeString += ":" + formatDigits(time.getUTCSeconds());
-	timeString += "." + formatDigits(time.getUTCMilliseconds());
+	timeString += "." + formatDigits(Math.floor(time.getUTCMilliseconds() / 10));
+	// Miliseconds are divided by 10 and floored to remove the least significant digit.
 
+	console.log(timeString);
 	return timeString;
 }	
 

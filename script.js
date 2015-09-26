@@ -32,33 +32,31 @@ Timer.prototype.restart = function() {
 	this.startTime = new Date().getTime();
 }
 
-function Updater(func, elem) {
-	this.func = func;
-	this.elem = elem;
-	this.isRunning = true;
-	this.intervalID = setInterval( function() { this.elem.innerHTML = this.func(); }, 10 );
+var timer = new Timer();
+
+function update() { document.getElementById("timer").innerHTML = timer.getString(); };
+var intervalID = null;
+
+function start() {
+	if(intervalID === null)
+		intervalID = setInterval( update, 10 );
 }
 
-Updater.prototype.start = function() {
-	this.isRunning = true;
-	this.intervalID = setInterval( function() { this.elem.innerHTML = this.func(); }, 10 );
-}
-
-Updater.prototype.stop = function() {
-	this.isRunning = false;
-	this.intervalID = clearInterval(this.intervalID);
-}
-
-Updater.prototype.toggle = function() {
-	if(this.isRunning) {
-		this.stop();
-	} else {
-		this.start();
+function stop() {
+	if(intervalID !== null) {
+		clearInterval(intervalID);
+		intervalID = null;
 	}
 }
 
-var timer = new Timer();
-var updater = new Updater(timer.getString, document.getElementById("timer"));
+function toggle() {
+	if(intervalID === null) {
+		intervalID = setInterval( update, 10 );
+	} else {
+		clearInterval(intervalID);
+		intervalID = null;
+	}
+}
 
 //clearInterval(intervalID);
 //var intervalID = setInterval(update, 10);
@@ -68,13 +66,16 @@ function keyupevent(evt) {
 
 	switch(evt.keyCode) {
 	case 32: // ' '
-		updater.toggle();
+		if(intervalID === null)
+			timer.restart();
+		toggle();
 		break;
 	case 67: // 'c'
-//		toggle(false);
+		start();
 		break;
 	case 82: // 'r'
-//		restart();
+		timer.restart(); // BUG: if this takes too long, timer might say longer than 00:00:00
+		update();
 		break;
 	default:
 		break;

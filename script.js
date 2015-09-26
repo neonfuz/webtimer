@@ -26,7 +26,6 @@ Timer.prototype.getString = function() {
 	timeString += "." + formatDigits(Math.floor(time.getUTCMilliseconds() / 10));
 	// Miliseconds are divided by 10 and floored to remove the least significant digit.
 
-	console.log(timeString);
 	return timeString;
 }	
 
@@ -60,12 +59,7 @@ function toggle() {
 	}
 }
 
-//clearInterval(intervalID);
-//var intervalID = setInterval(update, 10);
-
 function keyupevent(evt) {
-	console.log(evt.keyCode);
-
 	switch(evt.keyCode) {
 	case 32: // ' '
 		if(intervalID === null)
@@ -76,7 +70,7 @@ function keyupevent(evt) {
 		start();
 		break;
 	case 82: // 'r'
-		timer.restart(); // BUG: if this takes too long, timer might say longer than 00:00:00
+		timer.restart(); // (minor) BUG: if this takes too long, timer might say longer than 00:00:00
 		update();
 		break;
 	default:
